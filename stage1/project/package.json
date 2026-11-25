@@ -1,0 +1,10 @@
+{
+  "name": "stage1-tool-chatbot",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "阶段1动手项目：带工具的聊天机器人（查天气 + 算数学），手写循环，不用框架",
+  "scripts": {
+    "start": "tsx src/index.ts"
+  }
+}
