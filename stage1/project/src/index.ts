@@ -3,6 +3,7 @@ import readline from 'node:readline/promises';
 import { config, checkConfig } from './config.js';
 import { Conversation } from './chat.js';
 
+// 命令行调用入口
 checkConfig();
 
 const client = new OpenAI({

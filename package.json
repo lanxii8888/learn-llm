@@ -6,7 +6,8 @@
   "description": "Agent 开发学习 monorepo：所有依赖统一在根目录管理，各 stage 子项目单独启动",
   "scripts": {
     "start": "pnpm --filter stage1-tool-chatbot start",
-    "start:stage1": "pnpm --filter stage1-tool-chatbot start"
+    "start:stage1": "pnpm --filter stage1-tool-chatbot start",
+    "start:stage2": "pnpm --filter stage2-react-agent start"
   },
   "dependencies": {
     "dotenv": "^16.4.5",

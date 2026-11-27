@@ -18,7 +18,8 @@ export class Conversation {
     { role: 'system', content: SYSTEM_PROMPT },
   ];
 
-  constructor(private client: OpenAI) {}
+  // client OpenAI实例
+  constructor(private client: OpenAI) { }
 
   async ask(userInput: string): Promise<string> {
     // 1. 把用户输入追加进历史
