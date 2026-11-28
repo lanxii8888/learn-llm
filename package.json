@@ -7,7 +7,9 @@
   "scripts": {
     "start": "pnpm --filter stage1-tool-chatbot start",
     "start:stage1": "pnpm --filter stage1-tool-chatbot start",
-    "start:stage2": "pnpm --filter stage2-react-agent start"
+    "start:stage2": "pnpm --filter stage2-react-agent start",
+    "start:stage3": "pnpm --filter stage3-context-agent start",
+    "eval:stage3": "pnpm --filter stage3-context-agent eval"
   },
   "dependencies": {
     "dotenv": "^16.4.5",

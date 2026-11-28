@@ -4,12 +4,11 @@
 //    让模型能基于它继续推理（这正是 ReAct 里的 O）。
 import fs from 'node:fs';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { config } from './config.js';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const PROJECT_ROOT = path.resolve(__dirname, '..');
-const CORPUS_DIR = path.join(PROJECT_ROOT, 'corpus');
-const OUTPUT_DIR = path.join(PROJECT_ROOT, 'output');
+// 路径统一来自配置中心（config.projectRoot），不在工具里重复推导项目根目录。
+const CORPUS_DIR = path.join(config.projectRoot, 'corpus');
+const OUTPUT_DIR = path.join(config.projectRoot, 'output');
 
 // 工具定义（模型看到的接口）
 export type ToolDef = {

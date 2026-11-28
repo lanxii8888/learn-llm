@@ -7,7 +7,8 @@ import { tools, executeTool } from './tools.js';
 // 1. MAX_STEPS：为什么必须限步数？
 //    模型可能陷入「反复调工具也不给答案」的死循环（工具报错就重试、搜索没结果就换关键词……），
 //    没有上限 = 无限烧钱 + 卡死。上限是 agent 的「刹车」。
-const MAX_STEPS = 12;
+//    取值来自统一配置（根目录 .env 的 MAX_STEPS），默认 12。
+const MAX_STEPS = config.maxSteps;
 // 2. 上下文预算：历史越攒越长，最终撞满模型上下文窗口就会直接报错。
 //    这里用字符数做粗略估算（真实项目用 token 数），超了就压缩旧观察。见 notes/04。
 const CONTEXT_BUDGET_CHARS = 60_000;
@@ -55,7 +56,18 @@ export class ReactAgent {
       });
 
       const message = resp.choices[0].message;
-      // 模式匹配到用户问题需要调用tools中定义的工具时,message的object回返回需要调用的tool_calls
+      // 模式匹配到用户问题需要调用tools中定义的工具时 message的object回返回需要调用的tool_calls
+      /*
+      伪代码👇
+      for (step = 1; step <= MAX_STEPS; step++) {
+        resp = 模型(全部 messages)     // 每步都发完整历史
+        if (resp 有 tool_calls) {      // 判断：还要调工具
+            执行工具 → 结果回填 → 继续下一轮
+        } else {                        // 判断：不调了
+          返回答案 → 结束
+          }
+      }
+      */
       // ---- 这一步有工具调用 → 是 Act 阶段 ----
       if (message.tool_calls && message.tool_calls.length > 0) {
         // Thought：模型如果有说点什么（推理），记下来
@@ -125,6 +137,7 @@ export class ReactAgent {
     }
   }
 
+  // 记录思考链条
   getTrace(): string {
     if (this.trace.length === 0) return '（还没有执行记录，先提一个问题）';
     return this.trace

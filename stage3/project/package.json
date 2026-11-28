@@ -1,0 +1,11 @@
+{
+  "name": "stage3-context-agent",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "阶段3动手项目：上下文工程 + 长期记忆 + 结构化输出 + 流式输出 + 评估",
+  "scripts": {
+    "start": "tsx src/index.ts",
+    "eval": "tsx src/eval.ts"
+  }
+}

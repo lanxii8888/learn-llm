@@ -52,7 +52,7 @@ stage2/project/
 │   ├── rag.md
 │   └── agent.md
 ├── src/
-│   ├── config.ts      ← 读根目录 .env（和阶段1相同逻辑）
+│   ├── config.ts      ← 转发到根目录 config/index.ts（唯一读 .env 的地方）
 │   ├── tools.ts       ← 4 个真实工具：搜索/列目录/读文件/写文件
 │   ├── agent.ts       ← 核心：手写 ReAct 循环 + 步数上限 + 上下文预算守卫
 │   └── index.ts       ← 命令行交互入口

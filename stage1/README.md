@@ -12,7 +12,7 @@
 | 1 | 提示词工程 | [01-提示词工程.md](notes/01-提示词工程.md) | `src/chat.ts` 里的 SYSTEM_PROMPT |
 | 2 | 工具调用 / Function Calling | [02-工具调用-Function-Calling.md](notes/02-工具调用-Function-Calling.md) | `src/tools.ts` |
 | 3 | 对话/消息结构 | [03-对话消息结构.md](notes/03-对话消息结构.md) | `src/chat.ts` |
-| 4 | 模型选择与成本 | [04-模型选择与成本.md](notes/04-模型选择与成本.md) | `src/config.ts` |
+| 4 | 模型选择与成本 | [04-模型选择与成本.md](notes/04-模型选择与成本.md) | `src/config.ts`（转发到根目录 `config/index.ts`） |
 
 ## 动手做什么
 
@@ -26,13 +26,14 @@
 ## 怎么跑起来
 
 > 本项目是 monorepo，依赖统一装在**根目录**，`.env` 也放在**根目录**（`learn-llm/` 下）。
+> 配置读取逻辑集中在 [../config/index.ts](../config/index.ts)，所有阶段共用一份，子项目不再各自解析环境变量。
 
 ```bash
 # 在根目录（learn-llm/）执行，装一次即可
 npm install
 
 # 复制 .env 模板到根目录，然后编辑填入中转站信息
-cp stage1/project/.env.example .env
+cp .env.example .env
 
 # 启动 stage1（两种方式任选）
 npm run start:stage1          # 方式一：根目录启动

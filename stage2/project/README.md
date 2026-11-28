@@ -12,6 +12,7 @@ pnpm run start:stage2
 
 ## 代码结构
 
+- `src/config.ts` — 转发到根目录 `config/index.ts`（唯一读 `.env` 的地方）
 - `src/agent.ts` — 手写 ReAct 循环（核心，先读这个）
 - `src/tools.ts` — 4 个真实工具：list_docs / search_docs / read_file / write_file
 - `src/index.ts` — 命令行入口（`/trace` 可查看完整推理过程）
